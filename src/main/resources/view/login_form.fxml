@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="640.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.citroessentional.controller.LoginFormController">
+   <children>
+      <ImageView fitHeight="648.0" fitWidth="1001.0" layoutY="-2.0">
+         <image>
+            <Image url="@../asserts/crystalweed-cannabis-rLR4smahG2Q-unsplash.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="415.0" layoutX="606.0" layoutY="85.0" opacity="0.36" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="330.0" AnchorPane.bottomAnchor="146.0" AnchorPane.leftAnchor="606.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="85.0">
+         <stroke>
+            <LinearGradient endX="0.5829383886255924" endY="1.0" startX="0.1563981042654028">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.9736841917037964" green="0.7517503499984741" blue="0.022538986057043076" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </stroke>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <fill>
+            <LinearGradient endX="1.0" endY="0.08530805687203791" startX="0.037914691943127965" startY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="0.7372549176216125" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.5396341463414633">
+                     <color>
+                        <Color red="1.0" green="0.7333333492279053" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Hyperlink layoutX="824.0" layoutY="406.0" onAction="#linkRegisterOnAction" text="Register here" underline="true">
+         <font>
+            <Font size="14.0" />
+         </font></Hyperlink>
+      <Label layoutX="653.0" layoutY="401.0" prefHeight="32.0" prefWidth="172.0" text="Don't havent an account?" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <JFXButton alignment="TOP_CENTER" buttonType="RAISED" layoutX="727.0" layoutY="354.0" onAction="#btnLoginOnAction" opacity="0.65" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: ffbc00;" text="Login" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="22.0">
+               <image>
+                  <Image url="@../asserts/img_9.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </JFXButton>
+      <Label layoutX="675.0" layoutY="268.0" prefHeight="25.0" prefWidth="71.0" text="Password:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Label layoutX="675.0" layoutY="185.0" prefHeight="32.0" prefWidth="78.0" text="User Name:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Label layoutX="620.0" layoutY="118.0" prefHeight="32.0" prefWidth="312.0" text=" Login here..." textAlignment="CENTER" textFill="#d0cdb6" underline="true">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font></Label>
+      <Label layoutX="71.0" layoutY="150.0" opacity="0.7" prefHeight="73.0" prefWidth="229.0" text="Welcome" textFill="#ffbc00">
+         <font>
+            <Font name="System Bold Italic" size="48.0" />
+         </font>
+      </Label>
+      <Label layoutX="71.0" layoutY="237.0" opacity="0.7" prefHeight="47.0" prefWidth="467.0" text="Citro Essential Oil (pvt) Ltd." textFill="#ffbc00">
+         <font>
+            <Font name="System Bold Italic" size="32.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="67.0" fitWidth="71.0" layoutX="14.0" layoutY="14.0" opacity="0.58">
+         <image>
+            <Image url="@../asserts/Gold%20Luxury%20Initial%20Circle%20Logo%20(1).png" />
+         </image>
+      </ImageView>
+      <JFXTextField fx:id="txtPassword" layoutX="675.0" layoutY="293.0" prefHeight="25.0" prefWidth="208.0" promptText="Enter password" unFocusColor="BLACK" />
+      <JFXTextField fx:id="txtUserName" layoutX="675.0" layoutY="214.0" prefHeight="25.0" prefWidth="208.0" promptText="Enter user name" unFocusColor="BLACK" />
+   </children>
+</AnchorPane>

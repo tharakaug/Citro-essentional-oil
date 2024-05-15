@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.citroessentional.controller.PaymentFormController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="675.0" opacity="0.61" stroke="#fcfcfc" strokeType="INSIDE" style="-fx-background-color: #ffbc00;" width="1036.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="0.5450236966824644" startX="1.0" startY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="0.7372549176216125" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <ImageView fitHeight="70.0" fitWidth="77.0" layoutX="5.0" layoutY="4.0">
+         <image>
+            <Image url="@../asserts/Gold%20Luxury%20Initial%20Circle%20Logo%20(1).png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffbc00" height="15.0" layoutX="85.0" layoutY="59.0" stroke="#ffbc00" strokeType="INSIDE" width="947.0" />
+      <Label layoutX="87.0" layoutY="21.0" prefHeight="31.0" prefWidth="180.0" text="Payment Details">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

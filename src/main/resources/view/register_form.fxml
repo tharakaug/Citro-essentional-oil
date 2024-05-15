@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.citroessentional.controller.RegisterFormController">
+   <children>
+      <ImageView fitHeight="651.0" fitWidth="644.0">
+         <image>
+            <Image url="@../asserts/kadarius-seegars-0FHNXqyqgg4-unsplash.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="651.0" layoutX="643.0" opacity="0.63" stroke="TRANSPARENT" strokeType="INSIDE" width="357.0">
+         <fill>
+            <LinearGradient endX="0.11848341232227488" endY="0.39336492890995256" startX="0.07109004739336493" startY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="0.7372549176216125" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill></Rectangle>
+      <Label layoutX="688.0" layoutY="93.0" prefHeight="27.0" prefWidth="97.0" text="Sign Up...">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="690.0" layoutY="287.0" text="Password:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="689.0" layoutY="163.0" prefHeight="17.0" prefWidth="74.0" text="Name in full:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <JFXButton buttonType="RAISED" layoutX="751.0" layoutY="377.0" onAction="#btnSigninOnAction" style="-fx-background-color: #ffbc00;" text="Sign In" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="28.0">
+               <image>
+                  <Image url="@../asserts/img_10.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="689.0" layoutY="226.0" prefHeight="17.0" prefWidth="54.0" text="User ID:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <ImageView fitHeight="70.0" fitWidth="74.0" layoutX="4.0" layoutY="3.0" opacity="0.69">
+         <image>
+            <Image url="@../asserts/Gold%20Luxury%20Initial%20Circle%20Logo%20(1).png" />
+         </image>
+      </ImageView>
+      <JFXTextField fx:id="txtName" layoutX="689.0" layoutY="180.0" prefHeight="25.0" prefWidth="240.0" promptText="Enter Name" />
+      <JFXTextField fx:id="txtUserId" layoutX="688.0" layoutY="243.0" prefHeight="25.0" prefWidth="240.0" promptText="Enter user ID" />
+      <JFXTextField fx:id="txtPassword" layoutX="688.0" layoutY="304.0" prefHeight="25.0" prefWidth="240.0" promptText="Enter Password" />
+   </children>
+</AnchorPane>
