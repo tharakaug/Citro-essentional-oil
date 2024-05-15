@@ -114,7 +114,7 @@ public class CustomerFormController {
 
         Customer customer = new Customer(id, name, address, tel);
 
-        if (isValid()) {
+       if (isValid()) {
             try {
                 boolean isSaved = CustomerRepo.save(customer);
                 if (isSaved) {
@@ -199,10 +199,20 @@ public class CustomerFormController {
     public boolean isValid(){
         if (!Regex.setTextColor(TextField.ID,txtId)) return false;
         if (!Regex.setTextColor(TextField.CONTACT,txtContact)) return false;
+        if (!Regex.setTextColor(TextField.NAME,txtName)) return false;
+        if (!Regex.setTextColor(TextField.ADDRESS,txtAddress)) return false;
+
         return true;
     }
 
     public void txtCustomerContactOnKeyReleased(KeyEvent keyEvent) {
-        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.CONTACT,txtContact);
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.CONTACT, txtContact);
+    }
+
+    public void txtCustomerNameOnKeyReleased(KeyEvent keyEvent) {
+            Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.NAME, txtName);
+        }
+        public void txtCustomerAddressOnKeyReleased(KeyEvent keyEvent) {
+                Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.ADDRESS,txtAddress);
     }
 }

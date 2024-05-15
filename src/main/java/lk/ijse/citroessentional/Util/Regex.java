@@ -23,9 +23,9 @@ public class Regex {
             case ADDRESS :
                 field = "^([A-z0-9]|[-/,.@+]|\\s){4,}$";
                 break;
-           /* case DATE :
-                field = "^([A-Z][0-9]{3})$";
-                break;*/
+            case PASSWORD:
+                field = "^([0-9]{4})$";
+                break;
         }
 
         Pattern pattern = Pattern.compile(field);

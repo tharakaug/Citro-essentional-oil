@@ -122,8 +122,8 @@
          </image>
       </ImageView>
       <JFXTextField fx:id="txtId" layoutX="82.0" layoutY="145.0" onAction="#txtSearchOnAction" onKeyReleased="#txtCustomerIDOnKeyReleased" prefHeight="32.0" prefWidth="214.0" />
-      <JFXTextField fx:id="txtAddress" layoutX="378.0" layoutY="221.0" prefHeight="32.0" prefWidth="214.0" />
-      <JFXTextField fx:id="txtName" layoutX="378.0" layoutY="145.0" prefHeight="32.0" prefWidth="214.0" />
+      <JFXTextField fx:id="txtAddress" layoutX="378.0" layoutY="221.0" onKeyReleased="#txtCustomerAddressOnKeyReleased" prefHeight="32.0" prefWidth="214.0" />
+      <JFXTextField fx:id="txtName" layoutX="378.0" layoutY="138.0" onKeyReleased="#txtCustomerNameOnKeyReleased" prefHeight="32.0" prefWidth="214.0" />
       <JFXTextField fx:id="txtContact" layoutX="82.0" layoutY="221.0" onKeyReleased="#txtCustomerContactOnKeyReleased" prefHeight="32.0" prefWidth="214.0" />
    </children>
 </AnchorPane>

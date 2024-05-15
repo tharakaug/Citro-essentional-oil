@@ -117,7 +117,7 @@
             <Image url="@../asserts/Gold%20Luxury%20Initial%20Circle%20Logo%20(1).png" />
          </image>
       </ImageView>
-      <JFXTextField fx:id="txtPassword" layoutX="675.0" layoutY="293.0" prefHeight="25.0" prefWidth="208.0" promptText="Enter password" unFocusColor="BLACK" />
-      <JFXTextField fx:id="txtUserName" layoutX="675.0" layoutY="214.0" prefHeight="25.0" prefWidth="208.0" promptText="Enter user name" unFocusColor="BLACK" />
+      <JFXTextField fx:id="txtPassword" layoutX="675.0" layoutY="293.0" onKeyReleased="#txtUserPasswordOnKeyReleased" prefHeight="25.0" prefWidth="208.0" promptText="Enter password" unFocusColor="BLACK" />
+      <JFXTextField fx:id="txtUserName" layoutX="675.0" layoutY="214.0" onKeyReleased="#txtUserNameOnKeyReleased" prefHeight="25.0" prefWidth="208.0" promptText="Enter user name" unFocusColor="BLACK" />
    </children>
 </AnchorPane>

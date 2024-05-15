@@ -1,5 +1,6 @@
 package lk.ijse.citroessentional.controller;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,8 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.citroessentional.Util.Regex;
 import lk.ijse.citroessentional.db.DbConnection;
 
 import java.io.IOException;
@@ -23,21 +26,22 @@ public class LoginFormController {
     private AnchorPane rootNode;
 
     @FXML
-    private TextField txtPassword;
+    private JFXTextField txtPassword;
 
     @FXML
-    private TextField txtUserName;
+    private JFXTextField txtUserName;
 
     @FXML
     void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
         String username = txtUserName.getText();
         String pw = txtPassword.getText();
 
+        if (isValid()) {
         try {
             checkCredential(username,pw);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "OOPS! something went wrong").show();
-
+        }
         }
     }
 
@@ -85,6 +89,21 @@ public class LoginFormController {
         stage.setTitle("Registration Form");
 
         stage.show();
+    }
+
+    public void txtUserNameOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.NAME,txtUserName);
+    }
+
+    public boolean isValid(){
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.NAME,txtUserName)) return false;
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.PASSWORD,txtPassword)) return false;
+
+        return true;
+    }
+
+    public void txtUserPasswordOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.PASSWORD,txtPassword);
     }
 
 }
