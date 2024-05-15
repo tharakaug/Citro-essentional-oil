@@ -1,5 +1,5 @@
 package lk.ijse.citroessentional.Util;
 
 public enum TextField {
-NAME,ID,CONTACT,ADDRESS,DATE
+ID,CONTACT,ADDRESS,DATE
 }
