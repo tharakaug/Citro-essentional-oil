@@ -116,8 +116,8 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtContact" layoutX="86.0" layoutY="220.0" prefHeight="32.0" prefWidth="214.0" />
-      <JFXTextField fx:id="txtId" layoutX="86.0" layoutY="144.0" onAction="#txtSearchOnAction" prefHeight="32.0" prefWidth="214.0" />
-      <JFXTextField fx:id="txtName" layoutX="380.0" layoutY="144.0" prefHeight="32.0" prefWidth="214.0" />
+      <JFXTextField fx:id="txtContact" layoutX="86.0" layoutY="220.0" onKeyReleased="#txtSupcontactOnKeyReleased" prefHeight="32.0" prefWidth="214.0" />
+      <JFXTextField fx:id="txtId" layoutX="86.0" layoutY="144.0" onAction="#txtSearchOnAction" onKeyReleased="#txtSupIDOnKeyReleased" prefHeight="32.0" prefWidth="214.0" />
+      <JFXTextField fx:id="txtName" layoutX="380.0" layoutY="144.0" onKeyReleased="#txtSupNameOnKeyReleased" prefHeight="32.0" prefWidth="214.0" />
    </children>
 </AnchorPane>

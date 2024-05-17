@@ -121,9 +121,9 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffbc00" height="15.0" layoutX="86.0" layoutY="60.0" stroke="#ffbc00" strokeType="INSIDE" width="941.0" />
-      <JFXTextField fx:id="txtId" layoutX="86.0" layoutY="126.0" onAction="#txtSearchOnAction" prefHeight="32.0" prefWidth="214.0" />
-      <JFXTextField fx:id="txtDescription" layoutX="382.0" layoutY="126.0" prefHeight="32.0" prefWidth="214.0" />
-      <JFXTextField fx:id="txtPrice" layoutX="383.0" layoutY="202.0" prefHeight="32.0" prefWidth="214.0" />
-      <JFXTextField fx:id="txtQty" layoutX="86.0" layoutY="202.0" prefHeight="32.0" prefWidth="214.0" />
+      <JFXTextField fx:id="txtId" layoutX="86.0" layoutY="126.0" onAction="#txtSearchOnAction" onKeyReleased="#txtMaterialIDOnKeyReleased" prefHeight="32.0" prefWidth="214.0" />
+      <JFXTextField fx:id="txtDescription" layoutX="382.0" layoutY="126.0" onKeyReleased="#txtMaterialDescOnKeyReleased" prefHeight="32.0" prefWidth="214.0" />
+      <JFXTextField fx:id="txtPrice" layoutX="383.0" layoutY="202.0" onKeyReleased="#txtMaterialUnitpriceOnKeyReleased" prefHeight="32.0" prefWidth="214.0" />
+      <JFXTextField fx:id="txtQty" layoutX="86.0" layoutY="202.0" onKeyReleased="#txtMaterialQtyOnKeyReleased" prefHeight="32.0" prefWidth="214.0" />
    </children>
 </AnchorPane>

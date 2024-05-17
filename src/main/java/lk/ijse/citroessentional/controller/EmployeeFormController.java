@@ -1,26 +1,30 @@
 package lk.ijse.citroessentional.controller;
 
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.citroessentional.Util.Regex;
 import lk.ijse.citroessentional.model.Customer;
 import lk.ijse.citroessentional.model.Employee;
+import lk.ijse.citroessentional.model.Machine;
 import lk.ijse.citroessentional.model.tm.CustomerTm;
 import lk.ijse.citroessentional.model.tm.EmployeeTm;
 import lk.ijse.citroessentional.repository.CustomerRepo;
 import lk.ijse.citroessentional.repository.EmployeeRepo;
+import lk.ijse.citroessentional.repository.MachineRepo;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,23 +50,38 @@ public class EmployeeFormController {
     private TableView<EmployeeTm> tblEmployee;
 
     @FXML
-    private TextField txtAddress;
+    private JFXTextField txtAddress;
 
     @FXML
-    private TextField txtContact;
+    private JFXTextField txtContact;
 
     @FXML
-    private TextField txtId;
+    private JFXTextField txtId;
 
     @FXML
-    private TextField txtName;
+    private JFXTextField txtName;
+
+    @FXML
+    private JFXComboBox<String> cmbMachineID;
+
 
     private List<Employee> employeeList = new ArrayList<>();
 
-    public void initialize() {
+    public void initialize() throws SQLException {
         this.employeeList = getAllemployee();
         setCellValueFactory();
         loadEmployeeTable();
+        setComboBoxValue();
+    }
+
+    private void setComboBoxValue() throws SQLException {
+        List<Machine> all = MachineRepo.getAll();
+
+            ObservableList obList = FXCollections.observableArrayList();
+        for (Machine machine :all) {
+            obList.add(machine.getId());
+        }
+        cmbMachineID.setItems(obList);
     }
 
     private void setCellValueFactory() {
@@ -106,16 +125,20 @@ public class EmployeeFormController {
         String name = txtName.getText();
         String address = txtAddress.getText();
         String tel = txtContact.getText();
+        String mashId = cmbMachineID.getValue();
 
-        Employee employee = new Employee(id, name, address, tel);
+        Employee employee = new Employee(id, name, address, tel,mashId);
 
-        try {
-            boolean isSaved = EmployeeRepo.save(employee);
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "employee saved!").show();
+        if (isValid()) {
+            try {
+                boolean isSaved = EmployeeRepo.save(employee);
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "employee saved!").show();
+                   // loadEmployeeTable();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 
@@ -150,8 +173,9 @@ public class EmployeeFormController {
         String name = txtName.getText();
         String address = txtAddress.getText();
         String tel = txtContact.getText();
+        String mashId = cmbMachineID.getValue();
 
-        Employee employee = new Employee(id, name, address, tel);
+        Employee employee = new Employee(id, name, address, tel,mashId);
 
         try {
             boolean isUpdated = EmployeeRepo.update(employee);
@@ -181,4 +205,33 @@ public class EmployeeFormController {
         }
     }
 
+    public void txtEmployeeIDOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.ID,txtId);
+    }
+
+    public void txtEmployeeNameOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.NAME,txtName);
+    }
+
+    public void txtEmployeeAddressOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.ADDRESS,txtAddress);
+    }
+
+    public void txtEmplooyeeContactOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.CONTACT,txtContact);
+    }
+
+
+    public boolean isValid(){
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.ID,txtId)) return false;
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.CONTACT,txtContact)) return false;
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.NAME,txtName)) return false;
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.ADDRESS,txtAddress)) return false;
+
+        return true;
+    }
+
+    public void cmbMachineIDOnAction(ActionEvent actionEvent) {
+
+    }
 }

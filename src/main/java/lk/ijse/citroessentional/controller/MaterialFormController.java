@@ -1,5 +1,6 @@
 package lk.ijse.citroessentional.controller;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,8 +12,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.citroessentional.Util.Regex;
 import lk.ijse.citroessentional.model.Customer;
 import lk.ijse.citroessentional.model.Material;
 import lk.ijse.citroessentional.model.tm.CustomerTm;
@@ -47,16 +50,16 @@ public class MaterialFormController {
     private TableView<MaterialTm> tblMaterial;
 
     @FXML
-    private TextField txtDescription;
+    private JFXTextField txtDescription;
 
     @FXML
-    private TextField txtId;
+    private JFXTextField txtId;
 
     @FXML
-    private TextField txtPrice;
+    private JFXTextField txtPrice;
 
     @FXML
-    private TextField txtQty;
+    private JFXTextField txtQty;
 
     private List<Material> materialList = new ArrayList<>();
 
@@ -108,18 +111,19 @@ public class MaterialFormController {
         String qty = txtQty.getText();
         String price = txtPrice.getText();
 
-        Material material = new Material (id, name, qty, price);
+        Material material = new Material(id, name, qty, price);
 
-        try {
-            boolean isSaved = MaterialRepo.save(material);
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "material saved!").show();
+        if (isValid()) {
+            try {
+                boolean isSaved = MaterialRepo.save(material);
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "material saved!").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
-
 
     @FXML
     void btnBackOnAction(ActionEvent event)throws IOException {
@@ -181,6 +185,30 @@ public class MaterialFormController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+    }
+
+    public void txtMaterialIDOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.ID,txtId);
+    }
+
+    public void txtMaterialDescOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.DESCRIPTION,txtDescription);
+    }
+
+    public void txtMaterialUnitpriceOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.PRICE,txtPrice);
+    }
+
+    public void txtMaterialQtyOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.QTY,txtQty);
+    }
+    public boolean isValid(){
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.ID,txtId)) return false;
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.DESCRIPTION,txtDescription)) return false;
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.PRICE,txtPrice)) return false;
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.QTY,txtQty)) return false;
+
+        return true;
     }
 
 }

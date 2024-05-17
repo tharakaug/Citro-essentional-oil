@@ -188,5 +188,7 @@
             <Font size="13.0" />
          </font>
       </Label>
+      <Label fx:id="lblDate" layoutX="900.0" layoutY="34.0" prefHeight="17.0" prefWidth="108.0" text="Date" />
+      <Label fx:id="lblTime" layoutX="899.0" layoutY="10.0" prefHeight="17.0" prefWidth="108.0" text="Time" />
    </children>
 </AnchorPane>

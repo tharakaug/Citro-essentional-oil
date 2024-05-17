@@ -65,8 +65,8 @@ public class ItemRepo {
         if (resultSet.next()) {
             String pro_id = resultSet.getString(1);
             String name = resultSet.getString(2);
-            String price = resultSet.getString(3);
-            String qty = resultSet.getString(4);
+            double price = resultSet.getDouble(3);
+            int qty = resultSet.getInt(4);
 
             item = new Item(pro_id, name, price, qty);
         }
@@ -85,8 +85,8 @@ public class ItemRepo {
         while (resultSet.next()) {
             String id = resultSet.getString(1);
             String name = resultSet.getString(2);
-            String price = resultSet.getString(3);
-            String qty = resultSet.getString(4);
+            double price = resultSet.getDouble(3);
+            int qty = resultSet.getInt(4);
 
             Item item = new Item(id, name, price, qty);
             itemList.add(item);
@@ -121,8 +121,8 @@ public class ItemRepo {
         PreparedStatement pstm = DbConnection.getInstance().getConnection()
                 .prepareStatement(sql);
 
-        pstm.setString(1, od.getQty());
-        pstm.setString(2, od.getId());
+        pstm.setString(1, String.valueOf(od.getQty()));
+        pstm.setString(2, od.getItemId());
 
         return pstm.executeUpdate() > 0;
     }

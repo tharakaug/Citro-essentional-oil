@@ -1,23 +1,25 @@
 package lk.ijse.citroessentional.controller;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.citroessentional.Util.Regex;
 import lk.ijse.citroessentional.model.Customer;
+import lk.ijse.citroessentional.model.Item;
 import lk.ijse.citroessentional.model.Machine;
 import lk.ijse.citroessentional.model.tm.CustomerTm;
 import lk.ijse.citroessentional.model.tm.MachineTm;
 import lk.ijse.citroessentional.repository.CustomerRepo;
+import lk.ijse.citroessentional.repository.ItemRepo;
 import lk.ijse.citroessentional.repository.MachineRepo;
 
 import java.io.IOException;
@@ -43,29 +45,41 @@ public class MachineFormController {
     private TableView<MachineTm> tblMachine;
 
     @FXML
-    private TextField txtDescription;
+    private JFXTextField txtDescription;
 
     @FXML
-    private TextField txtId;
+    private JFXTextField txtId;
 
     @FXML
-    private TextField txtName;
+    private JFXTextField txtName;
 
     @FXML
-    private TextField txtProId;
+    private ComboBox<String> cmbProID;
+
 
     private List<Machine> machineList = new ArrayList<>();
 
-    public void initialize() {
+    public void initialize() throws SQLException {
         this.machineList = getAllMachine();
         setCellValueFactory();
         loadMachineTable();
+        setComboBoxValue();
+    }
+
+    private void setComboBoxValue() throws SQLException {
+        List<Item> all = ItemRepo.getAll();
+
+        ObservableList obList = FXCollections.observableArrayList();
+        for (Item item :all) {
+            obList.add(item.getId());
+        }
+        cmbProID.setItems(obList);
     }
 
     private void setCellValueFactory() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colDescription.setCellValueFactory(new PropertyValueFactory<>("dsc"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("desc"));
     }
 
     private void loadMachineTable() {
@@ -100,18 +114,20 @@ public class MachineFormController {
         String id = txtId.getText();
         String name = txtName.getText();
         String desc = txtDescription.getText();
-        String proId = txtProId.getText();
+        String proId = cmbProID.getValue();
 
 
-        Machine machine = new Machine(id, name, desc,proId);
+        Machine machine = new Machine(id, name, desc, proId);
 
-        try {
-            boolean isSaved = MachineRepo.save(machine);
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "machine saved!").show();
+        if (isValid()) {
+            try {
+                boolean isSaved = MachineRepo.save(machine);
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "machine saved!").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 
@@ -147,7 +163,7 @@ public class MachineFormController {
         String id = txtId.getText();
         String name = txtName.getText();
         String desc = txtDescription.getText();
-        String proId = txtProId.getText();
+        String proId = cmbProID.getValue();
 
 
         Machine machine = new Machine(id, name, desc,proId);
@@ -174,11 +190,30 @@ public class MachineFormController {
                 txtId.setText(machine.getId());
                 txtName.setText(machine.getName());
                 txtDescription.setText(machine.getDesc());
-                txtProId.setText(machine.getProId());
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+    }
+
+    public void txtIMachineIDOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.ID,txtId);
+    }
+
+
+    public void txtIMachineNameOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.NAME,txtName);
+    }
+
+    public void txtIMachineDescOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.DESCRIPTION,txtDescription);
+    }
+    public boolean isValid(){
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.ID,txtId)) return false;
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.NAME,txtName)) return false;
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.DESCRIPTION,txtDescription)) return false;
+
+        return true;
     }
 
 }

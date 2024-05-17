@@ -24,7 +24,19 @@ public class Regex {
                 field = "^([A-z0-9]|[-/,.@+]|\\s){4,}$";
                 break;
             case PASSWORD:
-                field = "^([0-9]{4})$";
+                field = "^([0-9]{4,})$";
+                break;
+            case PRICE:
+                field = "^([0-9 .]{1,})$";
+                break;
+            case QTY:
+                field = "^([0-9]{1,})$";
+                break;
+            case DESCRIPTION:
+                field = "^([A-z ]{4,})$";
+                break;
+            case DATE:
+                field = "^([0-9 -]{5,})$";
                 break;
         }
 

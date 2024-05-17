@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 public class EmployeeRepo {
     public static boolean save(Employee employee)throws SQLException {
-        String sql = "INSERT INTO employee VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO employee VALUES(?, ?, ?, ?,?)";
         PreparedStatement pstm = DbConnection.getInstance().getConnection()
                 .prepareStatement(sql);
 
@@ -19,6 +19,7 @@ public class EmployeeRepo {
         pstm.setObject(2, employee.getName());
         pstm.setObject(3, employee.getAddress());
         pstm.setObject(4, employee.getTel());
+        pstm.setObject(5, employee.getMashId());
 
 
         return pstm.executeUpdate() > 0;
@@ -54,8 +55,9 @@ public class EmployeeRepo {
             String name = resultSet.getString(2);
             String tel = resultSet.getString(3);
             String address = resultSet.getString(4);
+            String mashId = resultSet.getString(5);
 
-            employee = new Employee(emp_id, name, address,tel);
+            employee = new Employee(emp_id, name, address,tel,mashId);
         }
         return employee;
     }
@@ -84,8 +86,9 @@ public class EmployeeRepo {
             String name = resultSet.getString(2);
             String address = resultSet.getString(3);
             String tel = resultSet.getString(4);
+            String mashId = resultSet.getString(5);
 
-            Employee employee = new Employee(id, name, address, tel);employeeList.add(employee);
+            Employee employee = new Employee(id, name, address, tel,mashId);employeeList.add(employee);
         }
         return employeeList;
     }

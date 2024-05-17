@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class OrderDetail {
     private String id;
-    private String cusId;
-    private String qty;
+    private String itemId;
+    private int qty;
 }

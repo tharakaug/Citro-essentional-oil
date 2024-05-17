@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class ItemTm {
     private String id;
     private String name;
-    private String price;
-    private String qty;
+    private double price;
+    private int qty;
 
 }

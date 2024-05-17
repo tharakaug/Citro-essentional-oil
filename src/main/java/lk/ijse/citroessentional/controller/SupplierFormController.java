@@ -1,5 +1,6 @@
 package lk.ijse.citroessentional.controller;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,8 +12,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.citroessentional.Util.Regex;
 import lk.ijse.citroessentional.model.Customer;
 import lk.ijse.citroessentional.model.Supplier;
 import lk.ijse.citroessentional.model.tm.CustomerTm;
@@ -43,13 +46,13 @@ public class SupplierFormController {
     private TableView<SupplierTm> tblSupplier;
 
     @FXML
-    private TextField txtContact;
+    private JFXTextField txtContact;
 
     @FXML
-    private TextField txtId;
+    private JFXTextField txtId;
 
     @FXML
-    private TextField txtName;
+    private JFXTextField txtName;
 
     private List<Supplier> supplierList = new ArrayList<>();
 
@@ -98,15 +101,17 @@ public class SupplierFormController {
         String name = txtName.getText();
         String tel = txtContact.getText();
 
-        Supplier supplier = new Supplier(id, name,tel);
+        Supplier supplier = new Supplier(id, name, tel);
 
-        try {
-            boolean isSaved = SupplierRepo.save(supplier);
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "supplier saved!").show();
+        if (isValid()) {
+            try {
+                boolean isSaved = SupplierRepo.save(supplier);
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "supplier saved!").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 
@@ -174,6 +179,27 @@ public class SupplierFormController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+    }
+
+    public void txtSupcontactOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.CONTACT, txtContact);
+    }
+
+    public void txtSupIDOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.ID, txtId);
+    }
+
+    public void txtSupNameOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.NAME, txtName
+        );
+    }
+
+    public boolean isValid(){
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.ID,txtId)) return false;
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.NAME,txtName)) return false;
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.CONTACT,txtContact)) return false;
+
+        return true;
     }
 
 }

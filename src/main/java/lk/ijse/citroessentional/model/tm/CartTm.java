@@ -11,7 +11,10 @@ public class CartTm {
     private String id;
     private String date;
     private String itemID;
-    private String qty;
+    private double unitPrice;
+    private int qty;
+    private double   total;
     private String cusID;
     private String cusName;
+
 }

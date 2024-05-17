@@ -1,9 +1,12 @@
 package lk.ijse.citroessentional.controller;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import lk.ijse.citroessentional.Util.Regex;
 import lk.ijse.citroessentional.db.DbConnection;
 
 import java.sql.Connection;
@@ -13,13 +16,13 @@ import java.sql.SQLException;
 public class RegisterFormController {
 
     @FXML
-    private TextField txtName;
+    private JFXTextField txtName;
 
     @FXML
-    private TextField txtPassword;
+    private JFXTextField txtPassword;
 
     @FXML
-    TextField txtUserId;
+    JFXTextField txtUserId;
 
 
 
@@ -33,6 +36,7 @@ public class RegisterFormController {
     }
 
     private void saveUser(String user_id, String name, String pw) {
+        if (isValid()) {
         try {
             String sql = "INSERT INTO user VALUES(?, ?, ?)";
 
@@ -42,13 +46,35 @@ public class RegisterFormController {
             pstm.setObject(2, name);
             pstm.setObject(3, pw);
 
-            if(pstm.executeUpdate() > 0) {
-                new Alert(Alert.AlertType.CONFIRMATION, "user saved!").show();
+
+                if (pstm.executeUpdate() > 0) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "user saved!").show();
+                }
+            } catch(SQLException e){
+                new Alert(Alert.AlertType.ERROR, "something happend!").show();
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, "something happend!").show();
         }
     }
+
+    public void txtRegisterNameOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.NAME,txtName);
     }
+
+    public void txtRegisterIDOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.ID,txtUserId);
+    }
+
+    public void txtRegisterPasswordOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.PASSWORD,txtPassword);
+    }
+    public boolean isValid(){
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.NAME,txtName)) return false;
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.ID,txtUserId)) return false;
+        if (!Regex.setTextColor(lk.ijse.citroessentional.Util.TextField.PASSWORD,txtPassword)) return false;
+
+        return true;
+    }
+
+}
 
 
