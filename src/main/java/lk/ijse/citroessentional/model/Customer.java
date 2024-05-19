@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class Customer { // this model class represent real world customer entity
     private String id;
     private String name;
-    private String address;
     private String tel;
+    private String address;
 
 }

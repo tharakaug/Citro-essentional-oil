@@ -159,7 +159,7 @@ public class CustomerFormController {
         String address = txtAddress.getText();
 
 
-        Customer customer = new Customer(id, name, address, tel);
+        Customer customer = new Customer(id, name, tel,address);
 
         try {
             boolean isUpdated = CustomerRepo.update(customer);

@@ -1,0 +1,93 @@
+create database citro_essentional_oil;
+
+use citro_essentional_oil;
+
+create table user(
+     user_id varchar(8) primary key,
+     user_username varchar(10),
+     user_password varchar(10)
+     );
+
+create table customer(
+     customer_cusID varchar(8) primary key,
+     customer_name varchar(15),
+     customer_cusContactNO int(10),
+     customer_address varchar(30)
+     );
+
+create table orders(
+     orders_orderID varchar(8) primary key,
+     orders_orderDate varchar(10),
+     customer_cusID varchar(8),
+     foreign key(customer_cusID)references customer(customer_cusID)
+     );
+
+create table supplier(
+     supplier_supID varchar(8) primary key,
+     supplier_supName varchar(15),
+     supplier_contactNO varchar(10)
+     );
+
+
+create table product(
+     product_proID varchar(8) primary key,
+     product_proname varchar(10),
+     product_price double,
+     product_proQTY int(15)
+     );
+
+
+create table machine(
+     machine_mashID varchar(8) primary key,
+     machine_machineName varchar(10),
+     machine_machineDecs varchar(10),
+     product_proID varchar(8),
+     foreign key(product_proID)references product(product_proID)
+     );
+
+
+create table employee(
+     employee_empID varchar(8) primary key,
+     employee_name varchar(15),
+     employee_address varchar(10),
+     employee_contactNumber varchar(10),
+     machine_mashID varchar(8),
+     foreign key(machine_mashID)references machine(machine_mashID)
+     );
+
+create table material(
+     material_MID varchar(8) primary key,
+     material_matDesc varchar(20),
+     material_matQTY varchar(10),
+     material_unitprice varchar(10)
+     );
+
+create table supplier_detail(
+     supplier_supID varchar(8),
+     foreign key(supplier_supID)references supplier(supplier_supID),
+     material_MID varchar(8),
+     foreign key(material_MID)references material(material_MID)
+     );
+
+
+create table order_detail(
+     product_proID varchar(8),
+     foreign key(product_proID)references product(product_proID),
+     orders_orderID varchar(8),
+     foreign key(orders_orderID)references orders(orders_orderID),
+     qty varchar(8)
+     );
+
+
+create table material_detail(
+     material_MID varchar(8),
+     foreign key(material_MID)references material(material_MID),
+     product_proID varchar(8),
+     foreign key(product_proID)references product(product_proID)
+     );
+
+
+
+
+
+
